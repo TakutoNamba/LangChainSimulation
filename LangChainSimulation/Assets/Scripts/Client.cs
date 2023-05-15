@@ -22,7 +22,6 @@ public class Client : MonoBehaviour
     [SerializeField] Text message;
 
 
-    // Use this for initialization
     void Start()
     {
         udp = new UdpClient(LOCAL_PORT);
@@ -51,7 +50,6 @@ public class Client : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
 
