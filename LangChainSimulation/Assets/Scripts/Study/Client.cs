@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     static UdpClient udp;
     IPEndPoint remoteEP = null;
 
-    private string host = "127.0.0.1";
+    private string host = "192.168.0.76";
 
     private int LOCAL_PORT = 50007;
 
@@ -25,7 +25,7 @@ public class Client : MonoBehaviour
 
     void Start()
     {
-        udp = new UdpClient(LOCAL_PORT);
+        udp = new UdpClient(host, LOCAL_PORT);
         udp.BeginReceive(OnReceived, udp);
         udp.Client.ReceiveTimeout = 2000;
 

@@ -4,19 +4,36 @@ using UnityEngine;
 
 public class ViewController : MonoBehaviour
 {
-    private Main _main;
-    private CharacterController _characterController;
+    private Main main;
+    private LangChainOperator langchainOperator;
+    private UDP udp;
+    public GameObject _dataManager;
+
     void Start()
     {
-        _main = GetComponent<Main>();
-        _characterController = GetComponent<CharacterController>();
+        main = GetComponent<Main>();
+        langchainOperator = GetComponent<LangChainOperator>();
+        udp = _dataManager.GetComponent<UDP>();
+        udp.Init();
+        udp.startReceive();
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            langchainOperator.sendTest();
+        }
+
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            _main.runConversation();
+            //新しくキャラクターを生成
         }
+
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            //１日の会話を始める
+        }
+
     }
 }

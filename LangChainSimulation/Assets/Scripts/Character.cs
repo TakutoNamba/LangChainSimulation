@@ -31,4 +31,9 @@ public class Character : MonoBehaviour
     {
         //キャラクターの感情に応じた絵文字を出力
     }
+
+    public void walk()
+    {
+
+    }
 }
