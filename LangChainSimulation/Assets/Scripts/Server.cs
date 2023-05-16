@@ -4,7 +4,7 @@ using System.Text;
 
 public class Server : MonoBehaviour
 {
-    private string host = "127.0.0.1";
+    private string host = "192.168.0.76";
     private int port = 50007;
     private UdpClient client;
 

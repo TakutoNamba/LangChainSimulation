@@ -218,7 +218,7 @@ RectTransform:
   m_Children:
   - {fileID: 1008627942}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -524,7 +524,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549663956
 GameObject:
@@ -630,7 +630,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1430444308444236355, guid: 49c9be043ca8b3243ba09a2af7d9c7bc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1430444308444236355, guid: 49c9be043ca8b3243ba09a2af7d9c7bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -676,6 +676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 1430444308444236366, guid: 49c9be043ca8b3243ba09a2af7d9c7bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1430444308444236367, guid: 49c9be043ca8b3243ba09a2af7d9c7bc, type: 3}
       propertyPath: _name
       value: Murabito
@@ -700,9 +704,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2146714474}
-  - component: {fileID: 2146714473}
-  - component: {fileID: 2146714475}
   - component: {fileID: 2146714476}
+  - component: {fileID: 2146714475}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -710,19 +713,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2146714473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146714472}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea64d09e8b96734c99b2d1d5ff8d9ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  message: {fileID: 1008627943}
 --- !u!4 &2146714474
 Transform:
   m_ObjectHideFlags: 0
@@ -759,6 +749,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2146714472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72748e8f78d09c349870e8d69044947f, type: 3}
+  m_Script: {fileID: 11500000, guid: dea64d09e8b96734c99b2d1d5ff8d9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  message: {fileID: 1008627943}
