@@ -31,10 +31,9 @@ public class UDP : MonoBehaviour
     {
         sendEP = new IPEndPoint(IPAddress.Parse(host), _hostPort);
         udpForSend = new UdpClient(sendEP);
-        udpForSend.Connect(sendEP);
-
-        //receiveEP = new IPEndPoint(IPAddress.Any, _rcvPort);
-        //udpForReceive = new UdpClient(receiveEP);
+        //udpForSend.Connect(sendEP);
+        receiveEP = new IPEndPoint(IPAddress.Any, _rcvPort);
+        udpForReceive = new UdpClient(receiveEP);
 
         print("セットアップ完了");
     }
@@ -43,7 +42,7 @@ public class UDP : MonoBehaviour
     {
 
         byte[] data = System.Text.Encoding.UTF8.GetBytes(msg);
-        udpForSend.SendAsync(data, data.Length);
+        udpForSend.SendAsync(data, data.Length, sendEP);
 
     }
 

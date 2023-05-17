@@ -7,25 +7,32 @@ public class ViewController : MonoBehaviour
     private Main main;
     private LangChainOperator langchainOperator;
     private UDP udp;
+    private TCP tcp;
     public GameObject _dataManager;
 
     void Start()
     {
         main = GetComponent<Main>();
         langchainOperator = GetComponent<LangChainOperator>();
-        udp = _dataManager.GetComponent<UDP>();
-        udp.Init();
-        udp.startReceive();
+        //udp = _dataManager.GetComponent<UDP>();
+        //udp.Init();
+        //udp.startReceive();
+
+        tcp = _dataManager.GetComponent<TCP>();
+        tcp.Connect();
+
+
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            langchainOperator.sendTest();
+            //langchainOperator.sendTest();
+            tcp.Send("Hello World");
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //新しくキャラクターを生成
         }
