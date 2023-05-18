@@ -7,6 +7,8 @@ public class ViewController : MonoBehaviour
     private Main main;
     private LangChainOperator langchainOperator;
 
+    public GameObject testAgt;
+
 
     void Awake()
     {
@@ -24,11 +26,24 @@ public class ViewController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //新しくキャラクターを生成
+            langchainOperator.initializeCharacter(testAgt);
         }
 
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //なにかインタビューする
+            langchainOperator.interviewCharacter(testAgt, "How are you feeling right now?");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //１日の会話を始める
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            //普段の行動をインプットさせる
+
         }
 
     }

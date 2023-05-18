@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     public string _name;
     public int _age;
-    public string _characteristics;
+    public string _traits;
     public string _currentState;
     public enum Emotion
     {
@@ -20,11 +20,11 @@ public class Character : MonoBehaviour
 
     public Character(string name, int age, string characteristics, string currentState, Emotion emotion)
     {
-        _name = name;
-        _age = age;
-        _characteristics = characteristics;
-        _currentState = currentState;
-        _emotion = emotion;
+        //_name = name;
+        //_age = age;
+        //_characteristics = characteristics;
+        //_currentState = currentState;
+        //_emotion = emotion;
     }
 
     public void expressEmotion(Emotion _curEmotion)
