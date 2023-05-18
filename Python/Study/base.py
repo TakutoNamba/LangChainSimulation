@@ -18,8 +18,8 @@ from langchain.retrievers import TimeWeightedVectorStoreRetriever
 from langchain.vectorstores import FAISS
 from langchain.experimental.generative_agents import GenerativeAgent, GenerativeAgentMemory
 
-openai.api_key = "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"
-os.environ['OPENAI_API_KEY'] = "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"
+openai.api_key = ""
+os.environ['OPENAI_API_KEY'] = ""
 USER_NAME = "takuto" # The name you want to use when interviewing the agent.
 LLM = ChatOpenAI(max_tokens=1500) # Can be any LLM you want.
 

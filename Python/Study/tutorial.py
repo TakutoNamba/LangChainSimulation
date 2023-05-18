@@ -5,7 +5,7 @@ import random
 import time
 import openai
 
-openai.api_key = "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"
+openai.api_key = ""
 
 response = openai.ChatCompletion.create(
   model="gpt-3.5-turbo",

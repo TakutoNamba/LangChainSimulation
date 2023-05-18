@@ -10,18 +10,18 @@ using System.Net;
 
 public class LangChainOperator : MonoBehaviour
 {
-    UdpClient udpClient;
-    UDP udp;
+    TCP tcp;
     public GameObject _dataManager;
 
-    private void Awake()
+    private void Start()
     {
-        udp = _dataManager.GetComponent<UDP>();
+        tcp = _dataManager.GetComponent<TCP>();
+        tcp.Connect();
     }
 
     public void sendTest()
     {
-        udp.sendMessage("TEST");
+        tcp.Send("HELLO WORLD");
     }
 
     public void initializeCharacter()

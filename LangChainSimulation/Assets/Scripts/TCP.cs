@@ -71,7 +71,6 @@ public class TCP : MonoBehaviour
         if (byteSize > 0)
         {
             Debug.Log("get data back! : " + $"{Encoding.UTF8.GetString(this.Buffer, 0, byteSize)}");
-            Console.WriteLine($"{Encoding.UTF8.GetString(this.Buffer, 0, byteSize)}");
             socket.BeginReceive(this.Buffer, 0, this.Buffer.Length, SocketFlags.None, ReceiveCallback, socket);
         }
     }
