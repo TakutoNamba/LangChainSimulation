@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Sockets;
 using System.Net;
+using TMPro;
+
 
 /*
  * 用途に応じてLangChainにシミュレーションを出力してもらう
@@ -12,12 +14,13 @@ public class LangChainOperator : MonoBehaviour
 {
     TCP tcp;
     public GameObject _dataManager;
-    public GameObject[] agents;
+    private ViewController viewController;
     private int agentCode = 0;
     
 
     private void Start()
     {
+        viewController = this.GetComponent<ViewController>();
         tcp = _dataManager.GetComponent<TCP>();
         tcp.Connect();
     }
@@ -60,6 +63,32 @@ public class LangChainOperator : MonoBehaviour
 
         string msg = "3" + "|" + agent.GetComponent<Character>()._name + "|" + movements;
         tcp.Send(msg);
+    }
+
+
+    public void decideAction(string msg)
+    {
+        string[] msgComp = msg.Split('|');
+        Debug.Log(msgComp[0]);
+        string sample = msgComp[0];
+        
+        switch( msgComp[0].ToString() )
+        {
+            case "0":
+                //インタビュー内容反映
+                //viewController.showInterviewContent(msg);
+                Debug.Log("Action 0 taken");
+                break;
+            case "1":
+                //インタビュー内容反映
+                viewController.showInterviewContent(msg);
+                Debug.Log("Action 1 taken");
+                break;
+            case "2":
+                //その他
+                
+                break;
+        }
     }
 
     public void getCharacterStatus(GameObject agent)

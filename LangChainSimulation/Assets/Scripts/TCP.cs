@@ -14,6 +14,9 @@ public class TCP : MonoBehaviour
     public const int BufferSize = 1024;
     public string host = "127.0.0.1";
 
+    public GameObject RootController;
+    private LangChainOperator langOp;
+
     public byte[] Buffer { get; } = new byte[BufferSize];
 
     public TCP()
@@ -21,9 +24,15 @@ public class TCP : MonoBehaviour
         this.ServerIPEndPoint = new IPEndPoint(IPAddress.Loopback, 8080);
     }
 
+    private void Awake()
+    {
+    }
+
     // ソケット通信の接続
     public void Connect()
     {
+        langOp = RootController.GetComponent<LangChainOperator>();
+
         this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         this.Socket.Connect(this.ServerIPEndPoint);
 
@@ -71,6 +80,9 @@ public class TCP : MonoBehaviour
         if (byteSize > 0)
         {
             Debug.Log("get data back! : " + $"{Encoding.UTF8.GetString(this.Buffer, 0, byteSize)}");
+            langOp.decideAction(Encoding.UTF8.GetString(this.Buffer, 0, byteSize));
+
+
             socket.BeginReceive(this.Buffer, 0, this.Buffer.Length, SocketFlags.None, ReceiveCallback, socket);
         }
     }

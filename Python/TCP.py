@@ -32,10 +32,10 @@ while True:
         break
     else:
         print("receive data : {} ".format(data.decode("utf-8")))
-        langChain.implementSim(data.decode("utf-8"))
+        output = langChain.implementSim(data.decode("utf-8"))
         #clientにOKを送信
         # langChain.initializeCharacter(data.decode("utf-8"), 25, "excited, likes coding, curious", "looking for things to do on holidays, prefarably outdoor activities")
-        client.sendall('OK\n'.encode())
+        client.sendall(output.encode())
 
     # 8.接続を終了させる
 print("close client communication")

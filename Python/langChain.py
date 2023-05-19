@@ -17,8 +17,8 @@ from langchain.vectorstores import FAISS
 from langchain.experimental.generative_agents import GenerativeAgent, GenerativeAgentMemory
 import Config
 
-openai.api_key = ""
-os.environ['OPENAI_API_KEY'] = ""
+openai.api_key = "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"
+os.environ['OPENAI_API_KEY'] = "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"
 USER_NAME = "takuto" # The name you want to use when interviewing the agent.
 LLM = ChatOpenAI(max_tokens=1500) # Can be any LLM you want.
 
@@ -100,12 +100,16 @@ def checkTarget(agentName) -> GenerativeAgent:
             print(type(agt))
             return agt
 
-def implementSim(msgCode):
+def implementSim(msgCode) -> str:
     msgType = msgCode.split('|')
     if msgType[0] == "0":
         initializeCharacter(msgType[1], msgType[2], msgType[3], msgType[4])
+        output = "0|Character created!"
+        return output
     elif msgType[0] == "1":
-        print(interview_agent(checkTarget(msgType[1]), msgType[2]))
+        content = interview_agent(checkTarget(msgType[1]), msgType[2])
+        output = "1" + "|" + content
+        return output
     elif msgType[0] == "2":
         print(run_conversation(checkTarget(msgType[1]), msgType2))
     else:
