@@ -8,6 +8,8 @@ public class Character : MonoBehaviour
     public int _age;
     public string _traits;
     public string _currentState;
+    public string _baseBehaviors;
+
     public enum Emotion
     {
         Happy,

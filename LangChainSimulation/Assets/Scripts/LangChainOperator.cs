@@ -37,15 +37,23 @@ public class LangChainOperator : MonoBehaviour
         tcp.Send(msg);
     }
 
-    public void interviewCharacter(GameObject agent, string script)
+    public void inputObservation(GameObject agent, string script)
     {
-        string msg = "1" + "|" + agent.GetComponent<Character>()._name +"|" + script;
+        string msg = "1" + "|" + agent.GetComponent<Character>()._name + "|" + script;
         tcp.Send(msg);
     }
 
+    public void interviewCharacter(GameObject agent, string script)
+    {
+        string msg = "2" + "|" + agent.GetComponent<Character>()._name +"|" + script;
+        tcp.Send(msg);
+    }
+
+
+
     public void runConversation(GameObject agentA, string script)
     {
-        string msg = "2" + "|" + agentA.GetComponent<Character>()._name + "|" + script;
+        string msg = "3" + "|" + agentA.GetComponent<Character>()._name + "|" + script;
         tcp.Send(msg);
     }
 
@@ -81,12 +89,13 @@ public class LangChainOperator : MonoBehaviour
                 break;
             case "1":
                 //インタビュー内容反映
-                viewController.showInterviewContent(msg);
                 Debug.Log("Action 1 taken");
                 break;
             case "2":
+                viewController.showInterviewContent(msg);
+                Debug.Log("Action 2 taken");
                 //その他
-                
+
                 break;
         }
     }

@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1116c64f192714f4b99e2865393118cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testAgt: {fileID: 919132148490972656}
+  testAgt: {fileID: 919132147579204153}
   agents: []
   text_00: {fileID: 435685259}
   text_01: {fileID: 818617626}
@@ -883,6 +883,14 @@ MonoBehaviour:
   _age: 15
   _traits: Love to eat acorns, likes walking, aware of himself being a deer
   _currentState: A litte bit hungry
+  _baseBehaviors: "\"\u3057\u304B\u3055\u3093 grazes on grass.\"/\"\u3057\u304B\u3055\u3093
+    sniffs the air for potential predators.\"/\"\u3057\u304B\u3055\u3093 leaps over
+    fallen logs.\"/\"\u3057\u304B\u3055\u3093 dashes through the forest .\"/\"\u3057\u304B\u3055\u3093
+    pauses to listen for sounds of danger.\"/\"\u3057\u304B\u3055\u3093 nibbles on
+    leaves from low-hanging branches.\"/\"\u3057\u304B\u3055\u3093 bounds gracefully
+    across a meadow.\"/\"\u3057\u304B\u3055\u3093 pricks its ears to detect distant
+    noises.\"/\"\u3057\u304B\u3055\u3093 licks its coat to keep it clean and groomed.\"/\"\u3057\u304B\u3055\u3093
+    frolics playfully with other deer.\""
 --- !u!1 &1549663956
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1001,7 @@ MonoBehaviour:
   _age: 12
   _traits: Loves staying at a branch of the tree, a bit shy
   _currentState: New to this forest area, and wants to make friends
+  _baseBehaviors: "\"\u3059\u305A\u3081\u3055\u3093 perches on a tree branch.\""
 --- !u!1001 &1769497021
 PrefabInstance:
   m_ObjectHideFlags: 0

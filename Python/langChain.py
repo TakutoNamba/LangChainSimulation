@@ -17,8 +17,8 @@ from langchain.vectorstores import FAISS
 from langchain.experimental.generative_agents import GenerativeAgent, GenerativeAgentMemory
 import Config
 
-openai.api_key = "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"
-os.environ['OPENAI_API_KEY'] = "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"
+openai.api_key = ""
+os.environ['OPENAI_API_KEY'] = ""
 USER_NAME = "takuto" # The name you want to use when interviewing the agent.
 LLM = ChatOpenAI(max_tokens=1500) # Can be any LLM you want.
 
@@ -90,14 +90,23 @@ def initializeCharacter(_name, _age, _traits, _status):
               memory=Config.agent_memories[Config.agent_num-1]
     )
 
+
     Config.agents.append(agent)
-    print(Config.agents[len(Config.agents)-1].get_summary())
+    print(Config.agents[len(Config.agents)-1].get_summary(force_refresh=True))
+
+def inputMemories(_name, memories):
+    print(memories)
+    singleMemory = memories.split('/')
+    for m in singleMemory:
+        # //print(m)
+        checkTarget(_name).memory.add_memory(m, datetime.now())
+
+    print(checkTarget(_name).get_summary(force_refresh=True))
 
 def checkTarget(agentName) -> GenerativeAgent:
     for agt in Config.agents:
         if(agt.name == agentName):
             print(agt.name)
-            print(type(agt))
             return agt
 
 def implementSim(msgCode) -> str:
@@ -107,11 +116,15 @@ def implementSim(msgCode) -> str:
         output = "0|Character created!"
         return output
     elif msgType[0] == "1":
-        content = interview_agent(checkTarget(msgType[1]), msgType[2])
-        output = "1" + "|" + content
+        inputMemories(msgType[1], msgType[2])
+        output = "1|memory input completed!"
         return output
     elif msgType[0] == "2":
-        print(run_conversation(checkTarget(msgType[1]), msgType2))
+        content = interview_agent(checkTarget(msgType[1]), msgType[2])
+        output = "2" + "|" + content
+        return output
+    elif msgType[0] == "3":
+        print(run_conversation(checkTarget(msgType[1]), msgType[2]))
     else:
         print("No simulation found")
 

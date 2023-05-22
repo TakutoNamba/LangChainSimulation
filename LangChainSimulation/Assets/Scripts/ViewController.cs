@@ -59,12 +59,12 @@ public class ViewController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             //普段の行動をインプットさせる
-            
+            langchainOperator.inputObservation(testAgt, testAgt.GetComponent<Character>()._baseBehaviors);
 
         }
-        
 
-        if(output != prevOutput)
+
+        if (output != prevOutput)
         {
             text_00.SetActive(false);
             text_00.GetComponent<TextMeshProUGUI>().text = output;
