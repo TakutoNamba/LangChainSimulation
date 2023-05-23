@@ -11,7 +11,7 @@ public class TCP : MonoBehaviour
 {
     public IPEndPoint ServerIPEndPoint { get; set; }
     private Socket Socket { get; set; }
-    public const int BufferSize = 1024;
+    public const int BufferSize = 2048;
     public string host = "127.0.0.1";
 
     public GameObject RootController;

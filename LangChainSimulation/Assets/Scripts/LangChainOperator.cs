@@ -51,9 +51,9 @@ public class LangChainOperator : MonoBehaviour
 
 
 
-    public void runConversation(GameObject agentA, string script)
+    public void runConversation(GameObject agentA, GameObject agentB, string script)
     {
-        string msg = "3" + "|" + agentA.GetComponent<Character>()._name + "|" + script;
+        string msg = "3" + "|" + agentA.GetComponent<Character>()._name + "|" + agentB.GetComponent<Character>()._name + "|" + script;
         tcp.Send(msg);
     }
 
@@ -94,8 +94,11 @@ public class LangChainOperator : MonoBehaviour
             case "2":
                 viewController.showInterviewContent(msg);
                 Debug.Log("Action 2 taken");
-                //‚»‚Ì‘¼
-
+                break;
+            //‚»‚Ì‘¼
+            case "3":
+                viewController.showConversationContent(msg);
+                Debug.Log("Action 3 taken");
                 break;
         }
     }

@@ -29,21 +29,45 @@ def setup():
 def interview_agent(agent: GenerativeAgent, message: str) -> str:
     """Help the notebook user interact with the agent."""
     new_message = f"{USER_NAME} says {message}"
-    return agent.generate_dialogue_response(new_message)[1]
+    return agent.generate_dialogue_response(new_message, datetime.now())[1]
 
 def run_conversation(agents: List[GenerativeAgent], initial_observation: str) -> None:
     """Runs a conversation between agents."""
-    _, observation = agents[1].generate_reaction(initial_observation)
+    _, observation = agents[1].generate_reaction(initial_observation, datetime.now())
     print(observation)
     turns = 0
+    dialog_01 = ""
+    dialog_02 = ""
+    dialog_03 = ""
+    dialog_04 = ""
     while True:
         break_dialogue = False
+        inner_turn = 0
         for agent in agents:
-            stay_in_dialogue, observation = agent.generate_dialogue_response(observation)
+            stay_in_dialogue, observation = agent.generate_dialogue_response(observation, datetime.now())
             print(observation)
+            Config.conversation += (observation. + "/")
+
+            if 'Have a great' in observation or 'See you' in observation:
+                break_dialogue = True
+
+            if inner_turn %2 == 0:
+                dialog_01 = observation
+                if dialog_01 != dialog_03:
+                    dialog_03 = dialog_01
+                else:
+                    break_dialogue = True
+            else:
+                dialog_02 = observation
+                if dialog_02 != dialog_04:
+                    dialog_04 = dialog_02
+                else:
+                    break_dialogue = True
+            
             # observation = f"{agent.name} said {reaction}"
             if not stay_in_dialogue:
-                break_dialogue = True   
+                break_dialogue = True
+            inner_turn += 1
         if break_dialogue:
             break
         turns += 1
@@ -95,7 +119,7 @@ def initializeCharacter(_name, _age, _traits, _status):
     print(Config.agents[len(Config.agents)-1].get_summary(force_refresh=True))
 
 def inputMemories(_name, memories):
-    print(memories)
+    # print(memories)
     singleMemory = memories.split('/')
     for m in singleMemory:
         # //print(m)
@@ -106,7 +130,7 @@ def inputMemories(_name, memories):
 def checkTarget(agentName) -> GenerativeAgent:
     for agt in Config.agents:
         if(agt.name == agentName):
-            print(agt.name)
+            # print(agt.name)
             return agt
 
 def implementSim(msgCode) -> str:
@@ -124,7 +148,11 @@ def implementSim(msgCode) -> str:
         output = "2" + "|" + content
         return output
     elif msgType[0] == "3":
-        print(run_conversation(checkTarget(msgType[1]), msgType[2]))
+        agents = [checkTarget(msgType[1]), checkTarget(msgType[2])]
+        run_conversation(agents, msgType[3])
+        output = "3" + "|" + Config.conversation
+        print(output)
+        return output
     else:
         print("No simulation found")
 

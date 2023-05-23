@@ -304,6 +304,8 @@ Transform:
   m_Children:
   - {fileID: 543450652223895370}
   - {fileID: 543450652054513795}
+  - {fileID: 1904939496}
+  - {fileID: 982637425}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -585,7 +587,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testAgt: {fileID: 919132147579204153}
-  agents: []
+  agents:
+  - {fileID: 1904939495}
+  - {fileID: 982637424}
+  interview_samples:
+  - '"How are you feeling right now?"'
+  - '"What''s your favorite food?"'
+  - "\"hi Takashi\u3002i heard youre looking for a job. How is it going?\""
+  - '"Takashi said: Hi, Anya. Thanks for meeting me today. I was excited to share
+    with each other''s work! So what is the product team up to?'
   text_00: {fileID: 435685259}
   text_01: {fileID: 818617626}
   _delayDuration: 0.1
@@ -602,6 +612,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataManager: {fileID: 2146714472}
+--- !u!1 &982637424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982637425}
+  - component: {fileID: 982637426}
+  m_Layer: 0
+  m_Name: Anya
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &982637425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982637424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 597522078}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &982637426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982637424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c6e16dec53d0842b92d11369d34742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Anya
+  _age: 32
+  _traits: active, helpful
+  _currentState: N/A
+  _baseBehaviors: '"Anya overhears her colleague say something about a new client
+    being hard to work with"/"Anya wakes up and makes her bed"/"Anya eats a boal
+    of cereal"/"Anya rides to the office"/"Anya has a meeting with a marketing team"/"Anya
+    goes to football with her colleages"'
 --- !u!1 &1177101753
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u3057\u304B\u3055\u3093"
   _age: 15
-  _traits: Love to eat acorns, likes walking, aware of himself being a deer
+  _traits: Love to eat acorns, likes walking
   _currentState: A litte bit hungry
   _baseBehaviors: "\"\u3057\u304B\u3055\u3093 grazes on grass.\"/\"\u3057\u304B\u3055\u3093
     sniffs the air for potential predators.\"/\"\u3057\u304B\u3055\u3093 leaps over
@@ -1001,7 +1063,14 @@ MonoBehaviour:
   _age: 12
   _traits: Loves staying at a branch of the tree, a bit shy
   _currentState: New to this forest area, and wants to make friends
-  _baseBehaviors: "\"\u3059\u305A\u3081\u3055\u3093 perches on a tree branch.\""
+  _baseBehaviors: "\"\u3059\u305A\u3081\u3055\u3093 perches on a tree branch.\"/\"\u3059\u305A\u3081\u3055\u3093
+    flaps its wings rapidly.\"/\"\u3059\u305A\u3081\u3055\u3093 chirps a melodious
+    song.\"/\"\u3059\u305A\u3081\u3055\u3093 hops along the ground.\"/\"\u3059\u305A\u3081\u3055\u3093
+    pecks at scattered seeds.\"/\"\u3059\u305A\u3081\u3055\u3093 builds a nest with
+    twigs and leaves.\"/\"\u3059\u305A\u3081\u3055\u3093 swoops through the sky.\"/\"\u3059\u305A\u3081\u3055\u3093
+    preens its feathers meticulously.\"/\"\u3059\u305A\u3081\u3055\u3093 gathers
+    materials for its nest.\"/\"\u3059\u305A\u3081\u3055\u3093 dives down to catch
+    insects mid-flight.\""
 --- !u!1001 &1769497021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1175,6 +1244,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 29.73, z: 0}
+--- !u!1 &1904939495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1904939496}
+  - component: {fileID: 1904939497}
+  m_Layer: 0
+  m_Name: Takashi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1904939496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904939495}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 597522078}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1904939497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904939495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c6e16dec53d0842b92d11369d34742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Takashi
+  _age: 25
+  _traits: excited, likes coding, curious
+  _currentState: looking for things to do on holidays, prefarably outdoor activities
+  _baseBehaviors: '"Takashi lives in California"/"Takashi misses japanese food as
+    he is originally from japan"/"Takashi wants to get a new car"/"The new neighbors
+    have a dog"/"The road is noisy at night"/"Takashi likes to get foor from uber-eats"/"Takashi
+    is tired from his work"'
 --- !u!1 &2058256203
 GameObject:
   m_ObjectHideFlags: 0
