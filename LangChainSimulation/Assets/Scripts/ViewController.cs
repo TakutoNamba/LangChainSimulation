@@ -90,12 +90,17 @@ public class ViewController : MonoBehaviour
 
     public void showConversationContent(string msg)
     {
-        string[] msgComp = msg.Split('/');
+        //string[] msgComp = msg.Split('/');
 
-        for(int i =0; i< msgComp.Length; i++)
-        {
-            StartCoroutine(showSentence(msgComp[i]));
-        }
+        //for(int i =0; i< msgComp.Length; i++)
+        //{
+        //    StartCoroutine(showSentence(msgComp[i]));
+        //}
+
+        string[] msgComp = msg.Split('|');
+        string result = msgComp[1];
+
+        output = result;
 
 
     }
@@ -110,19 +115,36 @@ public class ViewController : MonoBehaviour
 
     private IEnumerator showSentence(string sentence)
     {
-        isTextDisplaying = true;
-        text_00.SetActive(false);
-        text_00.GetComponent<TextMeshProUGUI>().text = output;
-        text_00.GetComponent<TextMeshProSimpleAnimator>().enabled = true;
-        text_00.SetActive(true);
+        //isTextDisplaying = true;
+        //text_00.SetActive(false);
+        //text_00.GetComponent<TextMeshProUGUI>().text = output;
+        //text_00.GetComponent<TextMeshProSimpleAnimator>().enabled = true;
+        //text_00.SetActive(true);
 
-        yield return new WaitForSeconds(text_00.GetComponent<TextMeshProSimpleAnimator>().speedPerCharacter * text_00.GetComponent<TextMeshProUGUI>().text.Length + 1);
+        //yield return new WaitForSeconds(text_00.GetComponent<TextMeshProSimpleAnimator>().speedPerCharacter * text_00.GetComponent<TextMeshProUGUI>().text.Length + 1);
+        //Debug.Log("Text output done!");
+        //isTextDisplaying = false;
+
+
+        //string[] conversations = sentence.Split('/');
+
+        string[] sentences = sentence.Split('/');
+        int count = 0;
+        isTextDisplaying = true;
+
+        while (count<sentences.Length)
+        {
+            text_00.SetActive(false);
+            text_00.GetComponent<TextMeshProUGUI>().text = sentences[count];
+            text_00.GetComponent<TextMeshProSimpleAnimator>().enabled = true;
+            text_00.SetActive(true);
+
+            yield return new WaitForSeconds(text_00.GetComponent<TextMeshProSimpleAnimator>().speedPerCharacter * text_00.GetComponent<TextMeshProUGUI>().text.Length + 1);
+            count++;
+        }
+
         Debug.Log("Text output done!");
         isTextDisplaying = false;
-
-
-        string[] conversations = sentence.Split('/');
-        while()
 
     }
 

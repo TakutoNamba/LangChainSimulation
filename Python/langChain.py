@@ -17,8 +17,8 @@ from langchain.vectorstores import FAISS
 from langchain.experimental.generative_agents import GenerativeAgent, GenerativeAgentMemory
 import Config
 
-openai.api_key = ""
-os.environ['OPENAI_API_KEY'] = ""
+openai.api_key = "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"
+os.environ['OPENAI_API_KEY'] = "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"
 USER_NAME = "takuto" # The name you want to use when interviewing the agent.
 LLM = ChatOpenAI(max_tokens=1500) # Can be any LLM you want.
 
@@ -46,8 +46,15 @@ def run_conversation(agents: List[GenerativeAgent], initial_observation: str) ->
         for agent in agents:
             stay_in_dialogue, observation = agent.generate_dialogue_response(observation, datetime.now())
             print(observation)
-            Config.conversation += (observation. + "/")
-
+            if turns != 0:
+                comment = observation.split('said ')[1]
+                Config.conversation += (comment + "/")
+                Config.send_data = "3|" + comment + "/"
+            else:
+                comment = observation
+                Config.conversation += (comment + "/")
+                Config.send_data = "3|" + comment + "/"
+            
             if 'Have a great' in observation or 'See you' in observation:
                 break_dialogue = True
 
@@ -69,6 +76,7 @@ def run_conversation(agents: List[GenerativeAgent], initial_observation: str) ->
                 break_dialogue = True
             inner_turn += 1
         if break_dialogue:
+            print("Conversation done")
             break
         turns += 1
 
@@ -152,7 +160,7 @@ def implementSim(msgCode) -> str:
         run_conversation(agents, msgType[3])
         output = "3" + "|" + Config.conversation
         print(output)
-        return output
+        return None
     else:
         print("No simulation found")
 
