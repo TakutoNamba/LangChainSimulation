@@ -14,7 +14,6 @@ prev_send_data = ""
 client = None
 
 def send_tempData():
-    # print(prev_send_data)
     prev_send_data = "test"
     while True:
         if Config.send_data != prev_send_data:
@@ -37,6 +36,7 @@ def main():
     client, address = tcp_server.accept()
     print("[*] Connected!! [ Source : {}]".format(address))
     
+    #別スレッドで会話内容が更新されるたびにクライアントに送信
     thread = threading.Thread(target=send_tempData)
     thread.start()
     

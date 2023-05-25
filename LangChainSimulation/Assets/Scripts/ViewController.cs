@@ -16,15 +16,15 @@ public class ViewController : MonoBehaviour
 
     public GameObject text_00;
     public GameObject text_01;
+    public GameObject text_name;
+
     private string output;
     private string prevOutput;
     public bool isTextDisplaying;
 
     // 次の文字を表示するまでの時間[s]
     [SerializeField] private float _delayDuration = 0.1f;
-    private Coroutine _showCoroutine = null;
 
-    string put = "Put";
 
     void Awake()
     {
@@ -36,10 +36,7 @@ public class ViewController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            langchainOperator.sendTest();
-        }
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -57,12 +54,16 @@ public class ViewController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             //なにかインタビューする
+            //resetText(false);
             langchainOperator.interviewCharacter(agents[0], interview_samples[0]);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             //１日の会話を始める
+            //resetText(false);
+            text_name.GetComponent<TextMeshProUGUI>().text = agents[0].GetComponent<Character>()._name;
+            output = interview_samples[0];
             langchainOperator.runConversation(agents[0], agents[1], interview_samples[0]);
         }
 
@@ -71,10 +72,11 @@ public class ViewController : MonoBehaviour
 
         if (output != prevOutput)
         {
+            Debug.Log(output);
             StartCoroutine(showSentence(output));
+            prevOutput = output;
         }
 
-        prevOutput = output;
     }
 
 
@@ -85,48 +87,25 @@ public class ViewController : MonoBehaviour
         string result = msgComp[1].Split('"')[1];
 
         output = result;
-        //StartCoroutine(showSentence(output));
+        Debug.Log(output + "  " + prevOutput);
     }
 
     public void showConversationContent(string msg)
     {
-        //string[] msgComp = msg.Split('/');
-
-        //for(int i =0; i< msgComp.Length; i++)
-        //{
-        //    StartCoroutine(showSentence(msgComp[i]));
-        //}
-
         string[] msgComp = msg.Split('|');
-        string result = msgComp[1];
+        string result = msgComp[2];
 
         output = result;
-
-
+        Debug.Log(output + "  " + prevOutput);
     }
 
-    public void changeText(string script)
+    public void resetText(bool isVisible)
     {
-        Debug.Log("Called");
-        text_00.GetComponent<TextMeshProUGUI>().text = script;
-        Debug.Log("Done");
-
+        text_name.SetActive(isVisible);
     }
 
     private IEnumerator showSentence(string sentence)
     {
-        //isTextDisplaying = true;
-        //text_00.SetActive(false);
-        //text_00.GetComponent<TextMeshProUGUI>().text = output;
-        //text_00.GetComponent<TextMeshProSimpleAnimator>().enabled = true;
-        //text_00.SetActive(true);
-
-        //yield return new WaitForSeconds(text_00.GetComponent<TextMeshProSimpleAnimator>().speedPerCharacter * text_00.GetComponent<TextMeshProUGUI>().text.Length + 1);
-        //Debug.Log("Text output done!");
-        //isTextDisplaying = false;
-
-
-        //string[] conversations = sentence.Split('/');
 
         string[] sentences = sentence.Split('/');
         int count = 0;

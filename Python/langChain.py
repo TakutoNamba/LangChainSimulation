@@ -17,8 +17,10 @@ from langchain.vectorstores import FAISS
 from langchain.experimental.generative_agents import GenerativeAgent, GenerativeAgentMemory
 import Config
 
-openai.api_key = "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"
-os.environ['OPENAI_API_KEY'] = "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"
+#OpenAI API key 必要
+openai.api_key = ""
+os.environ['OPENAI_API_KEY'] = ""
+
 USER_NAME = "takuto" # The name you want to use when interviewing the agent.
 LLM = ChatOpenAI(max_tokens=1500) # Can be any LLM you want.
 
@@ -34,42 +36,25 @@ def interview_agent(agent: GenerativeAgent, message: str) -> str:
 def run_conversation(agents: List[GenerativeAgent], initial_observation: str) -> None:
     """Runs a conversation between agents."""
     _, observation = agents[1].generate_reaction(initial_observation, datetime.now())
+    Config.send_data = "3|" + agents[1].name + "|" + observation + "/"
     print(observation)
+
     turns = 0
-    dialog_01 = ""
-    dialog_02 = ""
-    dialog_03 = ""
-    dialog_04 = ""
     while True:
         break_dialogue = False
         inner_turn = 0
         for agent in agents:
             stay_in_dialogue, observation = agent.generate_dialogue_response(observation, datetime.now())
-            print(observation)
-            if turns != 0:
-                comment = observation.split('said ')[1]
-                Config.conversation += (comment + "/")
-                Config.send_data = "3|" + comment + "/"
-            else:
-                comment = observation
-                Config.conversation += (comment + "/")
-                Config.send_data = "3|" + comment + "/"
+
+            comment = observation.split('said ')[1]
+            Config.conversation += (comment + "/")
+            Config.send_data = "3|" + agent.name + "|" + comment + "/"
             
+            print(Config.send_data)
+
+            #一般的に話し終わったとされるような言い回しが入っている場合、その瞬間に会話を終了させる
             if 'Have a great' in observation or 'See you' in observation:
                 break_dialogue = True
-
-            if inner_turn %2 == 0:
-                dialog_01 = observation
-                if dialog_01 != dialog_03:
-                    dialog_03 = dialog_01
-                else:
-                    break_dialogue = True
-            else:
-                dialog_02 = observation
-                if dialog_02 != dialog_04:
-                    dialog_04 = dialog_02
-                else:
-                    break_dialogue = True
             
             # observation = f"{agent.name} said {reaction}"
             if not stay_in_dialogue:

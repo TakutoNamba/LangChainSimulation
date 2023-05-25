@@ -92,6 +92,7 @@ public class LangChainOperator : MonoBehaviour
                 Debug.Log("Action 1 taken");
                 break;
             case "2":
+                Debug.Log("passed here");
                 viewController.showInterviewContent(msg);
                 Debug.Log("Action 2 taken");
                 break;
